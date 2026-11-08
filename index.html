@@ -104,6 +104,11 @@
     #site-bg-img { transition: none; }
   }
 </style>
+
+<style id="header-fit-patch">
+  /* 顶部空间不足会与导航重叠：隐藏语言切换图标（主题/通知/登录保留） */
+  header button[aria-label="更改语言"] { display: none !important; }
+</style>
 </head>
 
   <body data-theme-font="system" data-theme-content-layout="full">
@@ -454,6 +459,7 @@
   ;(function () {
     var IMAGE_API = 'https://api.furry.ist/furry-img/'
     var img = document.getElementById('site-bg-img')
+    var scrim = document.getElementById('site-bg-scrim')
     if (!img) return
     var url = IMAGE_API + (IMAGE_API.indexOf('?') > -1 ? '&' : '?') + '_r=' + Date.now()
     var attempts = 0
